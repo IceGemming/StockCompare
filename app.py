@@ -86,10 +86,8 @@ if submit:
     sum_of_future_FCF = sum(discount_rate_4_years_ahead.values()) + today_terminal_value
     enterprise_value = sum_of_future_FCF + cash_eq - debt
     
-    st.write (ticker.info)
-    
-    # fair_value = enterprise_value/(ticker.info.get("impliedSharesOutstanding"))
-    fair_value = 150
+    # st.write (ticker.info)
+    fair_value = enterprise_value/(ticker.info.get("floatShares"))
 
     st.table(pd.DataFrame({'Stock Values': {'Fair Value': round(fair_value),
                                             'Current Value': round(ticker.info['previousClose']),
