@@ -5,7 +5,6 @@ import streamlit as st
 import plotly.graph_objects as go
 from datetime import datetime
 import requests_cache
-import streamviz as sv
 session = requests_cache.CachedSession('yfinance.cache')
 session.headers['User-agent'] = 'anish/1.0'
 
