@@ -37,7 +37,7 @@ if submit:
     revenue = ticker.financials
     balance_sheet = ticker.balance_sheet
     cash_flow = ticker.cash_flow
-    # revenue.query("index == 'Gross Profit' or index == 'Total Revenue' or index == 'Net Income'", inplace=True)
+    revenue.query("index == 'Gross Profit' or index == 'Total Revenue' or index == 'Net Income'", inplace=True)
     balance_sheet.query("index == 'Cash Cash Equivalents And Short Term Investments' or index == 'Total Debt'", inplace=True)
     cash_flow.query("index == 'Free Cash Flow'", inplace=True)
     st.subheader(f"Name: {ticker.info['longName']}")
@@ -46,15 +46,15 @@ if submit:
     flow = []
 
     # Remove last column
-    # revenue.drop(revenue.columns[len(revenue.columns) - 1], axis=1, inplace=True)
+    revenue.drop(revenue.columns[len(revenue.columns) - 1], axis=1, inplace=True)
     balance_sheet.drop(balance_sheet.columns[len(balance_sheet.columns) - 1], axis=1, inplace=True)
     cash_flow.drop(cash_flow.columns[len(cash_flow.columns) - 1], axis=1, inplace=True)
 
     # Create extra rows
-    # for i in revenue.to_dict().values():
-    #     percent.append(round(i['Gross Profit'] / i['Total Revenue'] * 100, 2))
-    # revenue.loc["Percent Gain"] = percent
-    # cash_flow = cash_flow.iloc[::-1, ::-1]
+    for i in revenue.to_dict().values():
+        percent.append(round(i['Gross Profit'] / i['Total Revenue'] * 100, 2))
+    revenue.loc["Percent Gain"] = percent
+    cash_flow = cash_flow.iloc[::-1, ::-1]
 
     cash_eq = balance_sheet.iloc[0].iloc[0]
     debt = balance_sheet.iloc[1].iloc[0]
