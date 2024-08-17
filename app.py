@@ -8,6 +8,8 @@ import requests_cache
 session = requests_cache.CachedSession('yfinance.cache')
 session.headers['User-agent'] = 'anish/1.0'
 
+# adding comment
+
 companies = []
 col1, col2, col3 = st.columns(3)
 # Fill up menu with tickers
